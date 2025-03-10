@@ -1,0 +1,79 @@
+REMOVE DUPLICACY FROM ARRAY ;-
+
+
+# Define a class to handle the solution
+class Solution:
+def removeDuplicates(self, nums):
+# If the list is empty, return 0 (no unique elements)
+if not nums:
+return 0
+
+# Initialize a pointer (i) to keep track of where the unique elements go
+# Initially, the first element is unique, so we start with i at 0
+i = 0
+
+# Loop through the array starting from the second element (index 1)
+for j in range(1, len(nums)):
+# Compare the current element with the last unique element
+if nums[j] != nums[i]:
+# If it's different, it's a new unique element, so update i and place it there
+i += 1
+nums[i] = nums[j] # Update the position with the new unique element
+
+# The unique elements are now in the first (i+1) positions of the array
+# Return the count of unique elements, which is i + 1
+return i + 1
+
+# Testing the solution
+param_1 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4] # Input sorted array
+
+# Create an instance of the Solution class
+solution = Solution()
+
+# Call the removeDuplicates method to find how many unique elements exist
+unique_count = solution.removeDuplicates(param_1)
+
+# Output the number of unique elements
+print(unique_count) # Expected output: 5
+
+# Output the modified array with the unique elements in the front
+# The rest of the array beyond the unique elements doesn't matter, so we print just the first 'unique_count' elements
+print(param_1[:unique_count]) # Expected output: [0, 1, 2, 3, 4]
+
+
+
+TWO SUM PROBLEM:-
+
+
+class Solution:
+def twoSum(self, nums, target):
+# Create an empty dictionary to store numbers and their indices
+num_dict = {}
+
+# Loop through the array
+for i, num in enumerate(nums):
+# Calculate the complement
+complement = target - num
+
+# If the complement is in the dictionary, we found a pair
+if complement in num_dict:
+return [num_dict[complement], i] # Return the indices of the two numbers
+
+# Otherwise, add the current number to the dictionary with its index
+num_dict[num] = i
+
+# If no solution is found (though the problem guarantees one solution)
+return []
+
+# Test the solution
+param_1 = [2, 7, 11, 15]
+param_2 = 9
+
+# Create an instance of the Solution class
+solution = Solution()
+
+# Call the twoSum method on the instance
+result = solution.twoSum(param_1, param_2)
+
+# Print the result
+print(result) # Output: [0, 1]
